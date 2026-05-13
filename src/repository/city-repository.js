@@ -2,27 +2,54 @@ const {City} = require('../models/index');
 
 class CityRepository{
 
+    
     async createCity({name}){
-        try{
+        try {
             const city = await City.create({
-                name
+                name: name
             });
             return city;
-        }catch(error){
-            throw {error};
+        } catch (error) {
+            console.log("Error in creating city", error);
+            throw error;
         }
     }
 
     async deleteCity(cityId){
-        try{
+        try {
             await City.destroy({
-                where:{
+                where: {
                     id: cityId
                 }
             });
             return true;
-        }catch(error){
-            throw {error};
+        } catch (error) {
+            console.log("Error in deleting city", error);
+            throw error;
+        }
+    }
+
+    async updateCity(cityId, data){
+        try {
+            const city= await City.update(data, {
+                where: {
+                    id: cityId
+                }
+            });
+            return city;
+        } catch (error) {
+            console.log("Error in updating city", error);
+            throw error;
+        }
+    }
+
+    async getCity(cityId){
+        try {
+            const city = await City.findByPk(cityId);
+            return city;
+        } catch (error) {
+            console.log("Error in fetching city", error);
+            throw error;
         }
     }
 }
