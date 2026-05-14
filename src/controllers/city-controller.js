@@ -70,7 +70,7 @@ const getCity = async (req,res) => {
 
 
 // Patch req -> city/:id
-const update = async (req,res) => {
+const updateCity = async (req,res) => {
     try {
         const response= await cityService.updateCity(req.params.id, req.body);
         return res.status(200).json({
@@ -90,9 +90,31 @@ const update = async (req,res) => {
     }
 }
 
+const getAllCities = async (req,res) => {
+    try {
+        const response= await cityService.getAllCities(req.query);
+        return res.status(200).json({
+            data : response,
+            message: "Successfully retrieved all cities",
+            success: true,
+            err: {}
+        });
+    } catch (error) {
+        console.log("Error in retrieving cities", error);
+        res.status(500).json({
+            data:{},
+            message: "Something went wrong in retrieving cities",
+            success: false,
+            err: error
+        });
+    }
+}
+
+
 module.exports = {
     create,
     destroy,
     getCity,
-    update
+    updateCity,
+    getAllCities
 }
