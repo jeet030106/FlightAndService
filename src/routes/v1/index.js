@@ -12,5 +12,6 @@ router.put('/city/:id', CityController.updateCity);
 router.get('/city', CityController.getAllCities);
 
 router.post('/flight', FlightController.createFlight);
+router.get('/flight', FlightController.getAllFlights);
 
 module.exports = router;
