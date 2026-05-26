@@ -40,6 +40,16 @@ class FlightRepository{
             throw error;
         }
     }
+
+    async getFlight(id){
+        try {
+            const flight = await Flight.findByPk(id);
+            return flight;
+        } catch (error) {
+            console.log("Error in Repository Layer", error);
+            throw error;
+        }
+    }
 }
 
 module.exports = FlightRepository;
